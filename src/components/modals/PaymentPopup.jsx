@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BkashLogo, NogodLogo, RocketLogo } from '../ui/PaymentLogos';
 
-const PaymentPopup = ({ total, orderData, onClose, showSuccess, showError }) => {
+const PaymentPopup = ({ total, orderData, onClose, onComplete, showSuccess, showError }) => {
   const [selectedMethod, setSelectedMethod] = useState('');
   const [transactionId, setTransactionId] = useState('');
   const [step, setStep] = useState('select'); // 'select' or 'submit'
@@ -118,7 +118,13 @@ ${orderItemsText}
       }
 
       showSuccess('Payment submitted successfully!');
-      onClose();
+      
+      // Call the completion handler to clear cart and close modals
+      if (onComplete) {
+        onComplete();
+      } else {
+        onClose();
+      }
     } catch (error) {
       showError(`Payment processing failed: ${error.message}. Please try again or contact support.`);
     }

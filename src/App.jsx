@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo, Suspense } from 'react';
+import React, { useState, useCallback, useMemo, Suspense, useEffect } from 'react';
 import './App.css';
 import {
   Header,
@@ -25,8 +25,16 @@ function App() {
   // Toast notification system
   const { toasts, hideToast, showSuccess, showError } = useToast();
   
-  // Cart state management
-  const [cartItems, setCartItems] = useState([]);
+  // Cart state management with localStorage persistence
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      const savedCart = localStorage.getItem('gameCart');
+      return savedCart ? JSON.parse(savedCart) : [];
+    } catch (error) {
+      console.error('Error loading cart from localStorage:', error);
+      return [];
+    }
+  });
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedGame, setSelectedGame] = useState(null);
   const [isGameModalOpen, setIsGameModalOpen] = useState(false);
@@ -35,6 +43,15 @@ function App() {
   const [visibleFeaturedGames, setVisibleFeaturedGames] = useState(8);
   const [visiblePopularGames, setVisiblePopularGames] = useState(8);
   const [visibleSaleGames, setVisibleSaleGames] = useState(4);
+
+  // Save cart to localStorage whenever cartItems changes
+  useEffect(() => {
+    try {
+      localStorage.setItem('gameCart', JSON.stringify(cartItems));
+    } catch (error) {
+      console.error('Error saving cart to localStorage:', error);
+    }
+  }, [cartItems]);
 
   // Cart functions - memoized to prevent unnecessary re-renders
   const addToCart = useCallback((game, quantity = 1) => {

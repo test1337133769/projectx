@@ -247,6 +247,7 @@ const BillingInfo = ({ cartItems, totalPrice, onBack, onComplete, showSuccess, s
             total={totalPrice}
             orderData={orderData}
             onClose={() => setShowPayment(false)}
+            onComplete={onComplete}
             showSuccess={showSuccess}
             showError={showError}
           />
