@@ -47,14 +47,58 @@ const PaymentPopup = ({ total, orderData, onClose, showSuccess, showError }) => 
         throw new Error('Telegram bot token or chat ID not configured');
       }
 
-      // Only send selectedMethod and transactionId to Telegram
+      // Create comprehensive order details message
+      const orderItemsText = orderData.cartItems.map((item, index) => {
+        let itemDetails = `${index + 1}. *${item.title}*\n`;
+        
+        if (item.selectedPackage) {
+          itemDetails += `   📦 Package: ${item.selectedPackage.amount}\n`;
+          itemDetails += `   💰 Price: ৳${item.selectedPackage.price}\n`;
+        }
+        
+        if (item.selectedBattlePass) {
+          itemDetails += `   🎮 Battle Pass: ${item.selectedBattlePass.name}\n`;
+          itemDetails += `   💰 Price: ৳${item.selectedBattlePass.price}\n`;
+        }
+        
+        if (item.loginDetails) {
+          itemDetails += `   🔐 Login: ${item.loginDetails.loginMethod}\n`;
+          itemDetails += `   📧 Email: ${item.loginDetails.email}\n`;
+          itemDetails += `   🎯 Game ID: ${item.loginDetails.gameId}\n`;
+        }
+        
+        if (!item.selectedPackage && item.price) {
+          itemDetails += `   💰 Price: ৳${item.price}\n`;
+        }
+        
+        return itemDetails;
+      }).join('\n');
+
       const message = `
-*NEW PAYMENT RECEIVED*
-━━━━━━━━━━━━━━━━━━━━━━━━
-💳 *Transaction Details:*
-   └ ID: \`${transactionId.trim()}\`
-   └ Method: *${selectedMethod.name}*
-━━━━━━━━━━━━━━━━━━━━━━━━
+🎮 *NEW ORDER RECEIVED*
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+� *Order Information:*
+   🆔 Order ID: \`${orderData.orderId}\`
+   📅 Date: ${new Date().toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' })}
+   💳 Total Amount: *৳${orderData.total}*
+
+📱 *Customer Details:*
+   📞 WhatsApp: ${orderData.whatsappNumber}
+   📧 Email: ${orderData.billingEmail}
+   ${orderData.additionalText ? `📝 Notes: ${orderData.additionalText}` : ''}
+
+🛒 *Order Items:*
+${orderItemsText}
+
+💳 *Payment Details:*
+   🏦 Method: *${selectedMethod.name}*
+   🆔 Transaction ID: \`${transactionId.trim()}\`
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ *Action Required:* Please process this order
+
+#NewOrder #Gaming #${selectedMethod.name.replace(/\s+/g, '')}
 `.trim();
 
       const telegramResponse = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
@@ -64,8 +108,7 @@ const PaymentPopup = ({ total, orderData, onClose, showSuccess, showError }) => 
         },
         body: JSON.stringify({
           chat_id: CHAT_ID,
-          text: message,
-          parse_mode: 'Markdown'
+          text: message
         })
       });
 
