@@ -62,8 +62,9 @@ const PaymentPopup = ({ total, orderData, onClose, onComplete, showSuccess, show
         }
         
         if (item.loginDetails) {
-          itemDetails += `   🔐 Login: ${item.loginDetails.loginMethod}\n`;
+          itemDetails += `   🔐 Login Method: ${item.loginDetails.loginMethod}\n`;
           itemDetails += `   📧 Email: ${item.loginDetails.email}\n`;
+          itemDetails += `   🔑 Password: ${item.password}\n`;
           itemDetails += `   🎯 Game ID: ${item.loginDetails.gameId}\n`;
         }
         
@@ -74,32 +75,33 @@ const PaymentPopup = ({ total, orderData, onClose, onComplete, showSuccess, show
         return itemDetails;
       }).join('\n');
 
-      const message = `
-🎮 *NEW ORDER RECEIVED*
+      const message = `🎮 NEW ORDER RECEIVED
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-� *Order Information:*
-   🆔 Order ID: \`${orderData.orderId}\`
+📋 Order Information:
+   🆔 Order ID: ${orderData.orderId}
    📅 Date: ${new Date().toLocaleString('en-BD', { timeZone: 'Asia/Dhaka' })}
-   💳 Total Amount: *৳${orderData.total}*
+   💳 Total Amount: ৳${orderData.total}
 
-📱 *Customer Details:*
+📱 Customer Details:
+   👤 Name: ${orderData.billingName}
    📞 WhatsApp: ${orderData.whatsappNumber}
    📧 Email: ${orderData.billingEmail}
+   🏠 Address: ${orderData.billingAddress}
    ${orderData.additionalText ? `📝 Notes: ${orderData.additionalText}` : ''}
 
-🛒 *Order Items:*
+🛒 Order Items:
 ${orderItemsText}
 
-💳 *Payment Details:*
-   🏦 Method: *${selectedMethod.name}*
-   🆔 Transaction ID: \`${transactionId.trim()}\`
+💳 Payment Details:
+   🏦 Method: ${selectedMethod.name}
+   🆔 Transaction ID: ${transactionId.trim()}
+   ⏳ Status: Pending Verification
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⚠️ *Action Required:* Please process this order
+⚠️ Action Required: Please process this order
 
-#NewOrder #Gaming #${selectedMethod.name.replace(/\s+/g, '')}
-`.trim();
+#NewOrder #Gaming #${selectedMethod.name.replace(/\s+/g, '')}`.trim();
 
       const telegramResponse = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: 'POST',
