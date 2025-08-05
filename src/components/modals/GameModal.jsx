@@ -70,9 +70,9 @@ const GameModal = ({ game, closeGameModal, addToCart, showSuccess, showError }) 
         className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
         onClick={handleBackdropClick}
       >
-        <div className="bg-white rounded-3xl max-w-lg w-full">
+        <div className="bg-white rounded-2xl md:rounded-3xl max-w-lg w-full mx-4">
           {showSuccessModal ? (
-            <div className="p-12 text-center">
+            <div className="p-8 md:p-12 text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -87,27 +87,27 @@ const GameModal = ({ game, closeGameModal, addToCart, showSuccess, showError }) 
                 <img
                   src={game.image}
                   alt={game.title}
-                  className="w-full h-48 object-cover rounded-t-3xl"
+                  className="w-full h-40 md:h-48 object-cover rounded-t-2xl md:rounded-t-3xl"
                 />
                 <button
                   onClick={closeGameModal}
-                  className="absolute top-4 right-4 w-10 h-10 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/40 transition-colors"
+                  className="absolute top-3 right-3 md:top-4 md:right-4 w-8 h-8 md:w-10 md:h-10 bg-black/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/40 transition-colors"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>
               
-              <div className="p-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">{game.title}</h2>
+              <div className="p-4 md:p-6">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">{game.title}</h2>
                 <div className="text-center mb-6">
-                  <span className="text-3xl font-bold text-gray-900">৳{game.price}</span>
+                  <span className="text-2xl md:text-3xl font-bold text-gray-900">৳{game.price}</span>
                 </div>
                 
                 <button
                   onClick={handleAddToCart}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold text-lg transition-colors"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 md:py-4 rounded-xl font-semibold text-base md:text-lg transition-colors"
                 >
                   Add to Cart - ৳{game.price}
                 </button>
@@ -125,15 +125,15 @@ const GameModal = ({ game, closeGameModal, addToCart, showSuccess, showError }) 
       className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
       onClick={handleBackdropClick}
     >
-      <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-2xl md:rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto mx-4">
         {showSuccessModal ? (
-          <div className="p-12 text-center">
+          <div className="p-8 md:p-12 text-center">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Order Placed!</h3>
+            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Order Placed!</h3>
             <p className="text-gray-600">Your {game.title} purchase has been added to cart.</p>
           </div>
         ) : (
