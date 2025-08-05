@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { memo } from 'react';
+import LazyImage from './LazyImage';
 
-const GameCard = ({ game, featured = false, openGameModal }) => {
+const GameCard = memo(({ game, featured = false, openGameModal }) => {
   return (
     <div className={`bg-white rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 group cursor-pointer ${featured ? 'lg:col-span-2' : ''}`}
       onClick={() => openGameModal(game)}
     >
       <div className={`relative overflow-hidden ${featured ? 'aspect-[2/1]' : 'aspect-square'}`}
       >
-        <img
+        <LazyImage
           src={game.image}
           alt={game.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full transition-transform duration-700 group-hover:scale-105"
         />
         
         {game.badge && (
@@ -51,6 +52,8 @@ const GameCard = ({ game, featured = false, openGameModal }) => {
       </div>
     </div>
   );
-};
+});
+
+GameCard.displayName = 'GameCard';
 
 export default GameCard;

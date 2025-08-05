@@ -7,10 +7,12 @@ const Cart = ({
   updateQuantity, 
   clearCart, 
   getTotalPrice, 
-  setIsCartOpen 
+  setIsCartOpen,
+  showSuccess,
+  showError
 }) => {
   const [showBilling, setShowBilling] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -29,9 +31,10 @@ const Cart = ({
   const handleOrderComplete = () => {
     clearCart();
     setShowBilling(false);
-    setShowSuccess(true);
+    showSuccess('Order completed successfully!');
+    setShowSuccessModal(true);
     setTimeout(() => {
-      setShowSuccess(false);
+      setShowSuccessModal(false);
       setIsCartOpen(false);
     }, 3000);
   };
@@ -42,7 +45,7 @@ const Cart = ({
       onClick={handleBackdropClick}
     >
       <div className="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-3x2">
-        {showSuccess ? (
+        {showSuccessModal ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -57,8 +60,11 @@ const Cart = ({
         ) : showBilling ? (
           <BillingInfo 
             cartItems={cartItems}
+            totalPrice={getTotalPrice}
             onBack={handleBillingBack}
             onComplete={handleOrderComplete}
+            showSuccess={showSuccess}
+            showError={showError}
           />
         ) : (
           <>
@@ -136,7 +142,7 @@ const Cart = ({
               <div className="p-6 border-t border-gray-200 bg-gray-50">
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-lg font-semibold text-gray-900">Total:</span>
-                  <span className="text-2xl font-bold text-gray-900">৳{getTotalPrice()}</span>
+                  <span className="text-2xl font-bold text-gray-900">৳{getTotalPrice}</span>
                 </div>
                 
                 <div className="space-y-3">

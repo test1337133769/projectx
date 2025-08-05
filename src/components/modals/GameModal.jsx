@@ -1,25 +1,33 @@
 import React, { useState } from 'react';
 
-const GameModal = ({ game, closeGameModal, addToCart }) => {
+const GameModal = ({ game, closeGameModal, addToCart, showSuccess, showError }) => {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [selectedBattlePass, setSelectedBattlePass] = useState(false);
   const [loginMethod, setLoginMethod] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [gameId, setGameId] = useState('');
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [currentStep, setCurrentStep] = useState('packages');
 
   const hasPackages = game.packages && game.packages.length > 0;
 
+  const calculateTotalPrice = () => {
+    if (!hasPackages) return game.price;
+    
+    const packagePrice = selectedPackage ? parseFloat(selectedPackage.price) : 0;
+    const battlePassPrice = selectedBattlePass ? parseFloat(game.battlePass.price) : 0;
+    return (packagePrice + battlePassPrice).toFixed(2);
+  };
+
   const handleAddToCart = () => {
     if (hasPackages) {
       if (!selectedPackage && !selectedBattlePass) {
-        alert('Please select at least one package or Battle Pass');
+        showError('Please select at least one package or Battle Pass');
         return;
       }
       if (!loginMethod || !email || !password || !gameId) {
-        alert('Please fill in all login details');
+        showError('Please fill in all login details');
         return;
       }
     }
@@ -30,16 +38,14 @@ const GameModal = ({ game, closeGameModal, addToCart }) => {
       selectedBattlePass: selectedBattlePass ? game.battlePass : null,
       loginDetails: hasPackages ? { loginMethod, email, gameId } : null,
       password: password,
-      price: hasPackages
-        ? ((selectedPackage ? parseFloat(selectedPackage.price) : 0) +
-          (selectedBattlePass ? parseFloat(game.battlePass.price) : 0))
-        : parseFloat(game.price),
+      price: calculateTotalPrice(),
     };
 
     addToCart(cartItem, 1);
-    setShowSuccess(true);
+    showSuccess('Item added to cart successfully!');
+    setShowSuccessModal(true);
     setTimeout(() => {
-      setShowSuccess(false);
+      setShowSuccessModal(false);
       closeGameModal();
     }, 1500);
   };
@@ -65,7 +71,7 @@ const GameModal = ({ game, closeGameModal, addToCart }) => {
         onClick={handleBackdropClick}
       >
         <div className="bg-white rounded-3xl max-w-lg w-full">
-          {showSuccess ? (
+          {showSuccessModal ? (
             <div className="p-12 text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -120,7 +126,7 @@ const GameModal = ({ game, closeGameModal, addToCart }) => {
       onClick={handleBackdropClick}
     >
       <div className="bg-white rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-        {showSuccess ? (
+        {showSuccessModal ? (
           <div className="p-12 text-center">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -324,7 +330,7 @@ const GameModal = ({ game, closeGameModal, addToCart }) => {
                         <div className="border-t border-gray-200 pt-2 mt-2">
                           <div className="flex justify-between font-semibold text-lg">
                             <span>Total:</span>
-                            <span>৳{getTotalPrice()}</span>
+                            <span>৳{calculateTotalPrice()}</span>
                           </div>
                         </div>
                       </div>

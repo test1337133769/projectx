@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BkashLogo, NogodLogo, RocketLogo } from '../ui/PaymentLogos';
 
-const PaymentPopup = ({ total, orderData, onClose }) => {
+const PaymentPopup = ({ total, orderData, onClose, showSuccess, showError }) => {
   const [selectedMethod, setSelectedMethod] = useState('');
   const [transactionId, setTransactionId] = useState('');
   const [step, setStep] = useState('select'); // 'select' or 'submit'
@@ -35,7 +35,7 @@ const PaymentPopup = ({ total, orderData, onClose }) => {
 
   const handleSubmit = async () => {
     if (!transactionId.trim()) {
-      alert('Please enter the transaction ID');
+      showError('Please enter the transaction ID');
       return;
     }
 
@@ -74,10 +74,10 @@ const PaymentPopup = ({ total, orderData, onClose }) => {
         throw new Error(`Telegram API error: ${errorData.description || 'Unknown error'}`);
       }
 
-      alert('Payment submitted successfully!');
+      showSuccess('Payment submitted successfully!');
       onClose();
     } catch (error) {
-      alert(`Payment processing failed: ${error.message}. Please try again or contact support.`);
+      showError(`Payment processing failed: ${error.message}. Please try again or contact support.`);
     }
   };
 

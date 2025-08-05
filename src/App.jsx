@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo, Suspense } from 'react';
 import './App.css';
 import {
   Header,
@@ -9,9 +9,10 @@ import {
   Footer,
   FeatureSection,
   Stats,
-  GameModal,
-  Cart
+  ToastContainer
 } from './components';
+import { GameModal, Cart } from './components/lazyComponents';
+import { useToast } from './hooks/useToast';
 import {
   featuredGames,
   popularGames,
@@ -21,6 +22,9 @@ import {
 } from './data/gamesData';
 
 function App() {
+  // Toast notification system
+  const { toasts, hideToast, showSuccess, showError } = useToast();
+  
   // Cart state management
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -32,8 +36,8 @@ function App() {
   const [visiblePopularGames, setVisiblePopularGames] = useState(8);
   const [visibleSaleGames, setVisibleSaleGames] = useState(4);
 
-  // Cart functions
-  const addToCart = (game, quantity = 1) => {
+  // Cart functions - memoized to prevent unnecessary re-renders
+  const addToCart = useCallback((game, quantity = 1) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === game.id);
       if (existingItem) {
@@ -45,13 +49,13 @@ function App() {
       }
       return [...prevItems, { ...game, quantity }];
     });
-  };
+  }, []);
 
-  const removeFromCart = (gameId) => {
+  const removeFromCart = useCallback((gameId) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== gameId));
-  };
+  }, []);
 
-  const updateQuantity = (gameId, quantity) => {
+  const updateQuantity = useCallback((gameId, quantity) => {
     if (quantity <= 0) {
       removeFromCart(gameId);
       return;
@@ -61,44 +65,44 @@ function App() {
         item.id === gameId ? { ...item, quantity } : item
       )
     );
-  };
+  }, [removeFromCart]);
 
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     setCartItems([]);
-  };
+  }, []);
 
-  const getTotalPrice = () => {
+  const getTotalPrice = useMemo(() => {
     return cartItems.reduce((total, item) => {
       return total + (parseFloat(item.price) * item.quantity);
     }, 0).toFixed(2);
-  };
+  }, [cartItems]);
 
-  const getTotalItems = () => {
+  const getTotalItems = useMemo(() => {
     return cartItems.reduce((total, item) => total + item.quantity, 0);
-  };
+  }, [cartItems]);
 
-  const openGameModal = (game) => {
+  const openGameModal = useCallback((game) => {
     setSelectedGame(game);
     setIsGameModalOpen(true);
-  };
+  }, []);
 
-  const closeGameModal = () => {
+  const closeGameModal = useCallback(() => {
     setIsGameModalOpen(false);
     setSelectedGame(null);
-  };
+  }, []);
 
-  // Load more functions
-  const handleLoadMoreFeatured = () => {
+  // Load more functions - memoized
+  const handleLoadMoreFeatured = useCallback(() => {
     setVisibleFeaturedGames(prev => prev + 8);
-  };
+  }, []);
 
-  const handleLoadMorePopular = () => {
+  const handleLoadMorePopular = useCallback(() => {
     setVisiblePopularGames(prev => prev + 8);
-  };
+  }, []);
 
-  const handleLoadMoreSale = () => {
+  const handleLoadMoreSale = useCallback(() => {
     setVisibleSaleGames(prev => prev + 4);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -201,24 +205,45 @@ function App() {
 
       {/* Game Details Modal */}
       {isGameModalOpen && selectedGame && (
-        <GameModal 
-          game={selectedGame} 
-          closeGameModal={closeGameModal}
-          addToCart={addToCart}
-        />
+        <Suspense fallback={<div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading...</p>
+          </div>
+        </div>}>
+          <GameModal 
+            game={selectedGame} 
+            closeGameModal={closeGameModal}
+            addToCart={addToCart}
+            showSuccess={showSuccess}
+            showError={showError}
+          />
+        </Suspense>
       )}
 
       {/* Cart Sidebar */}
       {isCartOpen && (
-        <Cart 
-          cartItems={cartItems}
-          removeFromCart={removeFromCart}
-          updateQuantity={updateQuantity}
-          clearCart={clearCart}
-          getTotalPrice={getTotalPrice}
-          setIsCartOpen={setIsCartOpen}
-        />
+        <Suspense fallback={<div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading Cart...</p>
+          </div>
+        </div>}>
+          <Cart 
+            cartItems={cartItems}
+            removeFromCart={removeFromCart}
+            updateQuantity={updateQuantity}
+            clearCart={clearCart}
+            getTotalPrice={getTotalPrice}
+            setIsCartOpen={setIsCartOpen}
+            showSuccess={showSuccess}
+            showError={showError}
+          />
+        </Suspense>
       )}
+
+      {/* Toast Notifications */}
+      <ToastContainer toasts={toasts} hideToast={hideToast} />
     </div>
   );
 }

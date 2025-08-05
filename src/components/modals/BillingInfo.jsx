@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PaymentPopup from '../modals/PaymentPopup';
 import { sendOrderConfirmation } from '../../services/emailService';
 
-const BillingInfo = ({ cartItems, onBack, onComplete }) => {
+const BillingInfo = ({ cartItems, totalPrice, onBack, onComplete, showSuccess, showError }) => {
   const [additionalText, setAdditionalText] = useState('');
   const [showPayment, setShowPayment] = useState(false);
   const [whatsappNumber, setWhatsappNumber] = useState('');
@@ -10,6 +10,7 @@ const BillingInfo = ({ cartItems, onBack, onComplete }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderId, setOrderId] = useState('');
+  const [orderData, setOrderData] = useState(null);
 
   // Generate unique order ID
   const generateOrderId = () => {
@@ -18,9 +19,10 @@ const BillingInfo = ({ cartItems, onBack, onComplete }) => {
     return `ORD-${timestamp}-${random.toString().padStart(3, '0')}`;
   };
 
-  const handlePlaceOrder = async () => {
+  const handlePlaceOrder = async (e) => {
+    e.preventDefault();
     if (!whatsappNumber || !billingEmail) {
-      alert('Please fill in all billing information');
+      showError('Please fill in all required billing information');
       return;
     }
 
@@ -28,20 +30,26 @@ const BillingInfo = ({ cartItems, onBack, onComplete }) => {
     const newOrderId = generateOrderId();
     setOrderId(newOrderId);
 
+    // Create order data object for payment popup
+    const orderDataForPayment = {
+      orderId: newOrderId,
+      cartItems,
+      whatsappNumber,
+      billingEmail,
+      additionalText,
+      total: totalPrice
+    };
+
+    // Set order data for PaymentPopup
+    setOrderData(orderDataForPayment);
+
     // Show payment popup immediately after order is created
     setIsProcessing(false);
     setShowPayment(true);
 
     // Send order confirmation email in background
     try {
-      await sendOrderConfirmation({
-        orderId: newOrderId,
-        cartItems,
-        whatsappNumber,
-        billingEmail,
-        additionalText,
-        total: getTotalPrice()
-      });
+      await sendOrderConfirmation(orderDataForPayment);
     } catch (error) {
       console.error('Order confirmation email failed:', error);
       // Don't show error to user as payment popup is already open
@@ -147,7 +155,7 @@ const BillingInfo = ({ cartItems, onBack, onComplete }) => {
             <div className="border-t border-gray-200 pt-3 mt-3">
               <div className="flex justify-between items-center">
                 <span className="text-lg font-bold text-gray-900">Total:</span>
-                <span className="text-2xl font-bold text-gray-900">৳{getTotalPrice()}</span>
+                <span className="text-2xl font-bold text-gray-900">৳{totalPrice}</span>
               </div>
             </div>
           </div>
@@ -229,15 +237,18 @@ const BillingInfo = ({ cartItems, onBack, onComplete }) => {
               <span>Processing...</span>
             </>
           ) : (
-            <span>Place Order - ৳{getTotalPrice()}</span>
+            <span>Place Order - ৳{totalPrice}</span>
           )}
         </button>
 
         {/* Payment Popup */}
         {showPayment && (
-          <PaymentPopup 
-            total={getTotalPrice()} 
-            onClose={() => setOrderComplete(true)} 
+                    <PaymentPopup 
+            total={totalPrice}
+            orderData={orderData}
+            onClose={() => setShowPayment(false)}
+            showSuccess={showSuccess}
+            showError={showError}
           />
         )}
       </div>
