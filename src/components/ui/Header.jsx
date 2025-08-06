@@ -39,7 +39,7 @@ const Header = ({ getTotalItems, setIsCartOpen, onSearch, searchTerm, setSearchT
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="text-2xl font-semibold text-gray-900 tracking-tight hover:text-blue-600 transition-colors"
             >
-              Arcade
+              ArcadeGS
             </button>
           </div>
           
