@@ -80,6 +80,7 @@ const GameModal = ({ game, closeGameModal, addToCart, showSuccess, showError }) 
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Added to Cart!</h3>
               <p className="text-gray-600">{game.title} has been added to your cart.</p>
+              <p className="text-gray-600">Please checkout with additional details.</p>
             </div>
           ) : (
             <>
