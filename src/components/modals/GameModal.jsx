@@ -75,7 +75,7 @@ const GameModal = ({ game, closeGameModal, addToCart, showSuccess, showError }) 
             <div className="p-8 md:p-12 text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6 0L17 13" />
                 </svg>
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Added to Cart!</h3>
@@ -133,8 +133,8 @@ const GameModal = ({ game, closeGameModal, addToCart, showSuccess, showError }) 
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Order Placed!</h3>
-            <p className="text-gray-600">Your {game.title} purchase has been added to cart.</p>
+            <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Item added to cart!</h3>
+            <p className="text-gray-600">Please checkout with additional details.</p>
           </div>
         ) : (
           <>
