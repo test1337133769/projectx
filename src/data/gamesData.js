@@ -72,14 +72,15 @@ export const popularGames = [
     image: 'img/call of duty.jpg',
     currency: 'CP',
     packages: [
-      { amount: '80 CP', price: '99', popular: false },
-      { amount: '400 CP', price: '499', popular: true },
-      { amount: '800 CP', price: '999', popular: false },
-      { amount: '2000 CP', price: '2399', popular: false },
-      { amount: '5000 CP', price: '5699', popular: false }
+      { amount: '80 CP', price: '95', popular: false },
+      { amount: '240 CP', price: '270', popular: true },
+      { amount: '420 CP', price: '450', popular: true },
+      { amount: '80 CP', price: '890', popular: false },
+      { amount: '1300 CP', price: '1340', popular: false },
+      { amount: '1760 CP', price: '1780', popular: false }
     ],
     battlePass: { name: 'Battle Pass', price: '699' },
-    loginMethods: ['Email', 'Google', 'Facebook', 'Apple ID']
+    loginMethods: ['Activattion Account', 'Google', 'Facebook']
   },
   {
     id: 8,
