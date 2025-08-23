@@ -75,7 +75,7 @@ export const popularGames = [
       { amount: '80 CP', price: '95', popular: false },
       { amount: '240 CP', price: '270', popular: true },
       { amount: '420 CP', price: '450', popular: true },
-      { amount: '80 CP', price: '890', popular: false },
+      { amount: '880 CP', price: '890', popular: false },
       { amount: '1300 CP', price: '1340', popular: false },
       { amount: '1760 CP', price: '1780', popular: false }
     ],
