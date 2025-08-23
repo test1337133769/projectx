@@ -72,14 +72,19 @@ export const popularGames = [
     image: 'img/call of duty.jpg',
     currency: 'CP',
     packages: [
-      { amount: '80 CP', price: '95', popular: false },
-      { amount: '240 CP', price: '270', popular: true },
-      { amount: '420 CP', price: '450', popular: true },
-      { amount: '880 CP', price: '890', popular: false },
-      { amount: '1300 CP', price: '1340', popular: false },
-      { amount: '1760 CP', price: '1780', popular: false }
+      { amount: '80 CP', price: '99', popular: false },
+      { amount: '420 CP', price: '499', popular: true },
+      { amount: '880 CP', price: '990', popular: false },
+      { amount: '1300 CP', price: '1349', popular: false },
+      { amount: '1760 CP', price: '1979', popular: false },
+      { amount: '2400 CP', price: '2599', popular: false },
+      { amount: '5250 CP', price: '5390', popular: false },
+      { amount: '6100 CP', price: '6439', popular: false },
+      { amount: '12000 CP', price: '10990', popular: false }
     ],
-    battlePass: { name: 'Battle Pass', price: '699' },
+    battlePass: { name: 'Battle Pass', price: '295', popular: true },        
+    battlePass: { name: 'Legendary Draw', price: '5390' },
+    battlePass: { name: 'Mythic Draw', price: '6439' },
     loginMethods: ['Activattion Account', 'Google', 'Facebook']
   },
   {
