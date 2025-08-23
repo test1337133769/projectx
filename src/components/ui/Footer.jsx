@@ -9,9 +9,6 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-6">Gaming</h3>
             <div className="space-y-3">
               <a href="#" className="block hover:text-gray-900 transition-colors">Mobile Games</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">PC Games</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">Console Games</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">Gaming Accessories</a>
             </div>
           </div>
           
@@ -20,8 +17,6 @@ const Footer = () => {
             <div className="space-y-3">
               <a href="#" className="block hover:text-gray-900 transition-colors">Gift Cards</a>
               <a href="#" className="block hover:text-gray-900 transition-colors">Subscriptions</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">Digital Wallet</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">Trade Program</a>
             </div>
           </div>
           
@@ -29,19 +24,6 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-900 mb-6">Support</h3>
             <div className="space-y-3">
               <a href="#" className="block hover:text-gray-900 transition-colors">Contact Us</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">Help Center</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">System Status</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">Developer Resources</a>
-            </div>
-          </div>
-          
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 mb-6">Company</h3>
-            <div className="space-y-3">
-              <a href="#" className="block hover:text-gray-900 transition-colors">About Arcade</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">Careers</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">Press</a>
-              <a href="#" className="block hover:text-gray-900 transition-colors">Investors</a>
             </div>
           </div>
         </div>
