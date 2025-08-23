@@ -79,8 +79,18 @@ const Cart = ({
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Order Complete!</h3>
-              <p className="text-gray-600">Thank you for your purchase.</p>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Order placed!</h3>
+              <p className="text-gray-600">Please wait for the order complete confirmation on your Whatsapp</p>
+              <p className="text-gray-400 text-sm mt-1">If you have any questions, feel free to contact our support.</p>
+              {/* Whatsapp api link */ }
+              <a 
+                href={`https://api.whatsapp.com/send?phone=8801305365568&text=Hello%2C%20I%20have%20a%20question%20about%20my%20order`} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="mt-4 inline-block px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+              >
+                Contact Support
+              </a>
             </div>
           </div>
         ) : showBilling ? (
