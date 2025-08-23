@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
+{/*         
         <div className="pt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
             <div className="text-2xl font-semibold text-gray-900">
@@ -44,7 +44,7 @@ const Footer = () => {
           <div className="mt-8 text-center text-sm">
             <p>Copyright © 2025 Arcade Inc. All rights reserved.</p>
           </div>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
