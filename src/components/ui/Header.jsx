@@ -69,6 +69,12 @@ const Header = ({ getTotalItems, setIsCartOpen, onSearch, searchTerm, setSearchT
             >
               Subscriptions
             </button>
+            <button 
+              onClick={() => scrollToSection('support')}
+              className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+            >
+              Contact Us
+            </button>
           </nav>
           
           <div className="flex items-center space-x-4">
@@ -184,6 +190,12 @@ const Header = ({ getTotalItems, setIsCartOpen, onSearch, searchTerm, setSearchT
                 className="text-gray-600 hover:text-gray-900 font-medium transition-colors text-left"
               >
                 Subscriptions
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="text-gray-600 hover:text-gray-900 font-medium transition-colors text-left"
+              >
+                Contact Us
               </button>
             </nav>
           </div>

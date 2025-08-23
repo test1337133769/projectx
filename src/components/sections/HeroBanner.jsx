@@ -29,7 +29,7 @@ const HeroBanner = () => {
           </div>
           <div className="space-y-2">
             <div className="text-2xl md:text-4xl font-bold text-gray-900">24/7</div>
-            <div className="text-sm md:text-base text-gray-600">Support</div>
+            <div className="text-sm md:text-base text-gray-600">Instant Support</div>
           </div>
           <div className="space-y-2">
             <div className="text-2xl md:text-4xl font-bold text-gray-900">2000+</div>
