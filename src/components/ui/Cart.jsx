@@ -58,7 +58,7 @@ const Cart = ({
     setTimeout(() => {
       setShowSuccessModal(false);
       setIsCartOpen(false);
-    }, 5000);
+    }, 120000);
     setCouponCode('');
     setDiscount(0);
     setCouponApplied(false);
