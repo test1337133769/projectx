@@ -15,7 +15,7 @@ const PaymentPopup = ({ total, orderData, onClose, onComplete, showSuccess, show
       instructions: '1. Dial *247# on your mobile\n2. Choose "Send Money"\n3. Enter recipient number: 01993221231\n4. Enter amount: ৳' + total + '\n5. Enter your PIN\n6. Copy the transaction ID below'
     },
     {
-      name: 'Nogod',
+      name: 'Nagad',
       logo: <NogodLogo />,
       color: '#FF0000',
       instructions: '1. Open Nogod app or dial *167#\n2. Choose "Send Money"\n3. Enter recipient number: 01993221231\n4. Enter amount: ৳' + total + '\n5. Enter your PIN\n6. Copy the transaction ID below'
@@ -241,14 +241,14 @@ ${orderItemsText}
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    {selectedMethod.name} Transaction ID *
+                    {selectedMethod.name} Transaction ID or Last 4 Digits *
                   </label>
                   <input 
                     type="text" 
                     value={transactionId}
                     onChange={(e) => setTransactionId(e.target.value)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                    placeholder={`Enter your ${selectedMethod.name} transaction ID`}
+                    placeholder={`Enter your ${selectedMethod.name} transaction ID or last 4 digits`}
                     autoFocus
                   />
                   <p className="text-xs text-gray-500 mt-1">
