@@ -18,7 +18,7 @@ const HeroBanner = () => {
             Explore Games
           </button>
           <button className="text-blue-600 hover:text-blue-700 font-semibold text-base md:text-lg flex items-center justify-center space-x-2 transition-colors w-full sm:w-auto">
-            <span>Browse Packages</span>
+            <span>Browse Reviews</span>
           </button>
         </div>
 
@@ -29,10 +29,10 @@ const HeroBanner = () => {
           </div>
           <div className="space-y-2">
             <div className="text-2xl md:text-4xl font-bold text-gray-900">24/7</div>
-            <div className="text-sm md:text-base text-gray-600">Instant delivery</div>
+            <div className="text-sm md:text-base text-gray-600">Support</div>
           </div>
           <div className="space-y-2">
-            <div className="text-2xl md:text-4xl font-bold text-gray-900">500+</div>
+            <div className="text-2xl md:text-4xl font-bold text-gray-900">2000+</div>
             <div className="text-sm md:text-base text-gray-600">Happy gamers</div>
           </div>
         </div>
