@@ -13,6 +13,28 @@ const Cart = ({
 }) => {
   const [showBilling, setShowBilling] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [couponCode, setCouponCode] = useState('');
+  const [couponError, setCouponError] = useState('');
+  const [discount, setDiscount] = useState(0);
+  const [couponApplied, setCouponApplied] = useState(false);
+  // Hardcoded coupon logic
+  const COUPONS = {
+    'SAVE10': 0.10, // 10% off
+    'SAVE20': 0.20  // 20% off
+  };
+
+  const handleApplyCoupon = () => {
+    const code = couponCode.trim().toUpperCase();
+    if (COUPONS[code]) {
+      setDiscount(COUPONS[code]);
+      setCouponError('');
+      setCouponApplied(true);
+    } else {
+      setDiscount(0);
+      setCouponError('Invalid coupon code');
+      setCouponApplied(false);
+    }
+  };
 
   const handleBackdropClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -37,6 +59,10 @@ const Cart = ({
       setShowSuccessModal(false);
       setIsCartOpen(false);
     }, 3000);
+    setCouponCode('');
+    setDiscount(0);
+    setCouponApplied(false);
+    setCouponError('');
   };
 
   return (
@@ -140,11 +166,40 @@ const Cart = ({
             
             {cartItems.length > 0 && (
               <div className="border-t border-gray-200 p-4 md:p-6 space-y-4">
+                {/* Coupon Section */}
+                <div className="space-y-2 mb-2">
+                  <label htmlFor="coupon" className="block text-sm font-medium text-gray-700">Apply Coupon</label>
+                  <div className="flex items-center space-x-2">
+                    <input
+                      id="coupon"
+                      type="text"
+                      value={couponCode}
+                      onChange={e => setCouponCode(e.target.value)}
+                      className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Enter coupon code"
+                      disabled={couponApplied}
+                    />
+                    <button
+                      onClick={handleApplyCoupon}
+                      className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold"
+                      disabled={couponApplied}
+                    >
+                      {couponApplied ? 'Applied' : 'Apply'}
+                    </button>
+                  </div>
+                  {couponError && <p className="text-red-500 text-xs mt-1">{couponError}</p>}
+                  {couponApplied && discount > 0 && (
+                    <p className="text-green-600 text-xs mt-1">Coupon applied! {Math.round(discount * 100)}% off</p>
+                  )}
+                </div>
+                {/* Total Section */}
                 <div className="flex items-center justify-between">
                   <span className="text-base md:text-lg font-semibold text-gray-700">Total</span>
-                  <span className="text-xl md:text-2xl font-bold text-gray-900">৳{getTotalPrice}</span>
+                  <span className="text-xl md:text-2xl font-bold text-gray-900">
+                    ৳{discount > 0 ? (getTotalPrice - getTotalPrice * discount).toFixed(2) : getTotalPrice}
+                  </span>
                 </div>
-                
+                {/* Checkout & Clear Cart */}
                 <div className="space-y-3">
                   <button
                     onClick={handleCheckout}
