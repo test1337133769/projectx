@@ -83,8 +83,6 @@ export const popularGames = [
       { amount: '12000 CP', price: '10990', popular: false }
     ],
     battlePass: { name: 'Battle Pass', price: '295', popular: true },        
-    battlePass: { name: 'Legendary Draw', price: '5390' },
-    battlePass: { name: 'Mythic Draw', price: '6439' },
     loginMethods: ['Activattion Account', 'Google', 'Facebook']
   },
   {
