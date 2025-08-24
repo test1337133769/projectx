@@ -82,8 +82,8 @@ export const popularGames = [
       { amount: '6100 CP', price: '6439', popular: false },
       { amount: '12000 CP', price: '10990', popular: false }
     ],
-    battlePass: { name: 'Battle Pass', price: '295', popular: true },        
-    loginMethods: ['Activattion Account', 'Google', 'Facebook']
+    battlePass: { name: 'Battle Pass(240 CP)', price: '295', popular: true },        
+    loginMethods: ['Activision/Call of  Duty Loggin', 'Google', 'Facebook']
   },
   {
     id: 8,
