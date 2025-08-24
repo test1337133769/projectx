@@ -127,7 +127,7 @@ export const popularGames = [
       { amount: '14000 Gems', price: '9999', popular: false }
     ],
     battlePass: { name: 'Gold Pass', price: '499' },
-    loginMethods: ['Email', 'Google', 'Apple ID', 'Supercell ID']
+    loginMethods: ['Supercell ID']
   },
   {
     id: 11,
@@ -142,7 +142,7 @@ export const popularGames = [
       { amount: '14000 Gems', price: '9999', popular: false }
     ],
     battlePass: { name: 'Pass Royale', price: '499' },
-    loginMethods: ['Email', 'Google', 'Apple ID', 'Supercell ID']
+    loginMethods: ['Supercell ID']
   }
 ];
 
