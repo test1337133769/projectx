@@ -37,7 +37,7 @@ export const popularGames = [
       { amount: '10000 Robux', price: '10999', popular: false }
     ],
     battlePass: { name: 'Premium Pass', price: '1250' },
-    loginMethods: ['Email','Username/Pass', 'Google']
+    loginMethods: ['Username & Password']
     
   },
   {
