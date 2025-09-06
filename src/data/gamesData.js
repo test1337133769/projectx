@@ -41,7 +41,7 @@ export const popularGames = [
     
   },
   {
-    id: 5,
+    id: 7,
     title: 'PUBG Mobile',
     image: 'img/pubg.png',
     currency: 'UC',
@@ -70,7 +70,7 @@ export const popularGames = [
     loginMethods: ['Email', 'Google', 'Apple ID']
   },
   {
-    id: 7,
+    id: 5,
     title: 'Call of Duty Mobile',
     image: 'img/call of duty.jpg',
     currency: 'CP',
