@@ -41,35 +41,6 @@ export const popularGames = [
     
   },
   {
-    id: 7,
-    title: 'PUBG Mobile',
-    image: 'img/pubg.png',
-    currency: 'UC',
-    packages: [
-      { amount: '60 UC', price: '85', popular: false },
-      { amount: '325 UC', price: '425', popular: true },
-      { amount: '660 UC', price: '850', popular: false },
-      { amount: '1800 UC', price: '2125', popular: false },
-      { amount: '3850 UC', price: '4250', popular: false }
-    ],
-    battlePass: { name: 'Royale Pass', price: '599' },
-    loginMethods: ['Email', 'Google', 'Facebook', 'Twitter']
-  },
-  {
-    id: 6,
-    title: 'Honkai Star Rail',
-    image: 'img/Honkai.png',
-    currency: 'Oneiric Shards',
-    packages: [
-      { amount: '60 Oneiric Shards', price: '99', popular: false },
-      { amount: '300 Oneiric Shards', price: '499', popular: true },
-      { amount: '980 Oneiric Shards', price: '1599', popular: false },
-      { amount: '1980 Oneiric Shards', price: '2999', popular: false }
-    ],
-    battlePass: { name: 'Nameless Honor', price: '999' },
-    loginMethods: ['Email', 'Google', 'Apple ID']
-  },
-  {
     id: 5,
     title: 'Call of Duty Mobile',
     image: 'img/call of duty.jpg',
@@ -87,6 +58,35 @@ export const popularGames = [
     ],
     battlePass: { name: 'Battle Pass(240 CP)', price: '295', popular: true },        
     loginMethods: ['Activision/Call of  Duty Loggin', 'Google', 'Facebook']
+  },
+  {
+    id: 6,
+    title: 'Honkai Star Rail',
+    image: 'img/Honkai.png',
+    currency: 'Oneiric Shards',
+    packages: [
+      { amount: '60 Oneiric Shards', price: '99', popular: false },
+      { amount: '300 Oneiric Shards', price: '499', popular: true },
+      { amount: '980 Oneiric Shards', price: '1599', popular: false },
+      { amount: '1980 Oneiric Shards', price: '2999', popular: false }
+    ],
+    battlePass: { name: 'Nameless Honor', price: '999' },
+    loginMethods: ['Email', 'Google', 'Apple ID']
+  },
+  {
+    id: 7,
+    title: 'PUBG Mobile',
+    image: 'img/pubg.png',
+    currency: 'UC',
+    packages: [
+      { amount: '60 UC', price: '85', popular: false },
+      { amount: '325 UC', price: '425', popular: true },
+      { amount: '660 UC', price: '850', popular: false },
+      { amount: '1800 UC', price: '2125', popular: false },
+      { amount: '3850 UC', price: '4250', popular: false }
+    ],
+    battlePass: { name: 'Royale Pass', price: '599' },
+    loginMethods: ['Email', 'Google', 'Facebook', 'Twitter']
   },
   {
     id: 8,
