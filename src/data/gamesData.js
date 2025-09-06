@@ -61,8 +61,8 @@ export const popularGames = [
   },
   {
     id: 6,
-    title: 'Honkai Star Rail',
-    image: 'img/Honkai.png',
+    title: 'Blood Strike',
+    image: 'img/bloodstrike.jpg',
     currency: 'Oneiric Shards',
     packages: [
       { amount: '60 Oneiric Shards', price: '99', popular: false },
