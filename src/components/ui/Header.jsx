@@ -49,7 +49,7 @@ const Header = ({ getTotalItems, setIsCartOpen, onSearch, searchTerm, setSearchT
               onClick={() => scrollToSection('featured-games')}
               className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
             >
-              Featured Games
+              Comming Soon
             </button>
             <button 
               onClick={() => scrollToSection('popular-games')}
