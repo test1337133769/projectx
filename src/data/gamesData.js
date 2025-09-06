@@ -72,8 +72,8 @@ export const popularGames = [
       { amount: '2260 Gold(2000+260)', price: '1999', popular: false },
       { amount: '5800 Gold(5000+800)', price: '4999', popular: false }
     ],
-    StrikePassE: { name: 'Srike Pass Elite', price: '399' },
-    StrikePassP: { name: 'Srike Pass Premium', price: '899' },
+     
+     
     battlePass: { name: 'Lucky Bag Week', price: '100' },
     loginMethods: ['Netease Account', 'Google',]
   },
