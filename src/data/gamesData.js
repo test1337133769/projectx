@@ -4,15 +4,7 @@ export const featuredGames = [
     id: 1,
     title: 'Mobile Legends',
     image: 'img/Mobile Legends.png',
-     currency: 'Lunite',
-    packages: [
-      { amount: '60 Lunite', price: '99', popular: false },
-      { amount: '300 Lunite', price: '499', popular: true },
-      { amount: '980 Lunite', price: '1599', popular: false },
-      { amount: '1980 Lunite', price: '2999', popular: false }
-    ],
-    battlePass: { name: 'Wuthering Pass', price: '799' },
-    loginMethods: ['Email', 'Google', 'Facebook']
+    Comming soon
   },
   {
     id: 2,
