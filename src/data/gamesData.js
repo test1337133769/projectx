@@ -25,7 +25,7 @@ export const featuredGames = [
 export const popularGames = [
   {
     id: 4,
-    title: 'Wuthering Waves',
+    title: 'Roblox',
     image: 'img/roblox.png',
     currency: 'Robux',
     packages: [
