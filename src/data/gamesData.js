@@ -4,7 +4,6 @@ export const featuredGames = [
     id: 1,
     title: 'Mobile Legends',
     image: 'img/Mobile Legends.png',
-    Comming soon
   },
   {
     id: 2,
