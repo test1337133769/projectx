@@ -63,15 +63,19 @@ export const popularGames = [
     id: 6,
     title: 'Blood Strike',
     image: 'img/bloodstrike.jpg',
-    currency: 'Oneiric Shards',
+    currency: 'Gold',
     packages: [
-      { amount: '60 Oneiric Shards', price: '99', popular: false },
-      { amount: '300 Oneiric Shards', price: '499', popular: true },
-      { amount: '980 Oneiric Shards', price: '1599', popular: false },
-      { amount: '1980 Oneiric Shards', price: '2999', popular: false }
+      { amount: '105 Gold(100+5)', price: '99', popular: true },
+      { amount: '320 Gold(300+20)', price: '299', popular: true },
+      { amount: '540 Gold(500+40)', price: '499', popular: false },
+      { amount: '1100 Gold(1000+100)', price: '999', popular: false },
+      { amount: '2260 Gold(2000+260)', price: '1999', popular: false },
+      { amount: '5800 Gold(5000+800)', price: '4999', popular: false }
     ],
-    battlePass: { name: 'Nameless Honor', price: '999' },
-    loginMethods: ['Email', 'Google', 'Apple ID']
+    StrikePassE: { name: 'Srike Pass Elite', price: '399' },
+    StrikePassP: { name: 'Srike Pass Premium', price: '899' },
+    battlePass: { name: 'Lucky Bag Week', price: '100' },
+    loginMethods: ['Netease Account', 'Google',]
   },
   {
     id: 7,
