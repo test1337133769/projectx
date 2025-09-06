@@ -26,16 +26,19 @@ export const popularGames = [
   {
     id: 4,
     title: 'Wuthering Waves',
-    image: 'img/Wuthering.png',
-    currency: 'Lunite',
+    image: 'img/roblox.png',
+    currency: 'Robux',
     packages: [
-      { amount: '60 Lunite', price: '99', popular: false },
-      { amount: '300 Lunite', price: '499', popular: true },
-      { amount: '980 Lunite', price: '1599', popular: false },
-      { amount: '1980 Lunite', price: '2999', popular: false }
+      { amount: '80 Robux', price: '109', popular: true },
+      { amount: '400 Robux', price: '549', popular: true },
+      { amount: '800 Robux', price: '1099', popular: false }, 
+      { amount: '1700 Robux', price: '2199', popular: false },
+      { amount: '4500 Robux', price: '5499', popular: false },
+      { amount: '10000 Robux', price: '10999', popular: false }
     ],
-    battlePass: { name: 'Wuthering Pass', price: '799' },
-    loginMethods: ['Email', 'Google', 'Facebook']
+    battlePass: { name: 'Premium Pass', price: '1250' },
+    loginMethods: ['Email','Username/Pass', 'Google']
+    
   },
   {
     id: 5,
